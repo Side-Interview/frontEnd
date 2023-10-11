@@ -54,23 +54,19 @@ export const Label = styled.p`
   margin-bottom: 8px;
 `;
 
-export const Input = styled.input<{ $length: boolean }>`
-  border: ${(props) => (props.$length ? "none" : "2px solid #f82525")};
+export const Input = styled.input<{ $valid: boolean }>`
+  border: ${(props) => (props.$valid ? "none" : "2px solid #f82525")};
   border-radius: 12px;
-  /* &:focus {
-    outline: none;
-    border: 2px solid #f82525;
-  } */
-
   background: #f7f7f7;
   width: 338px;
   height: 48px;
   padding: 15px;
   margin-bottom: 4px;
   font-family: "IBM Plex Sans";
-
   &:focus {
     outline: none;
+    border: ${(props) =>
+      props.$valid ? "2px solid gray" : "2px solid #f82525"};
   }
 `;
 

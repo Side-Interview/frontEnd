@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Outer,
   TitleP,
@@ -31,6 +32,8 @@ import {
 } from "../styles/SignUpStyle";
 
 export default function SignUp() {
+  const navigate = useNavigate();
+
   const [nickName, setNickName] = useState("");
   const nickNameRef = useRef<HTMLInputElement>(null);
 
@@ -149,7 +152,7 @@ export default function SignUp() {
         <InputAndImgDiv>
           <Input
             ref={nickNameRef}
-            $length={nickNameIsValid}
+            $valid={nickNameIsValid}
             value={nickName}
             onChange={nickNameOnChangeHandler}
             placeholder="2-8자 이내, 특수문자 제외 조합"
@@ -170,7 +173,7 @@ export default function SignUp() {
         <Label>이메일</Label>
         <InputAndImgDiv>
           <Input
-            $length={emailIsValid}
+            $valid={emailIsValid}
             onChange={emailOnChangeHandler}
             placeholder="ex.gdhoing@gmail.com"
           />
@@ -191,7 +194,7 @@ export default function SignUp() {
         <InputAndImgDiv>
           <form>
             <Input
-              $length={passwordIsValid}
+              $valid={passwordIsValid}
               onChange={passwordOnChangeHandler}
               type="password"
               autoComplete="on"
@@ -217,7 +220,7 @@ export default function SignUp() {
             <LastInput
               type="password"
               autoComplete="on"
-              $length={passwordConfirmIsValid}
+              $valid={passwordConfirmIsValid}
               onChange={passwordConfirmOnChangeHandler}
               placeholder="영문 대소문자+숫자+특수문자 조합 8자리"
             />
@@ -289,7 +292,8 @@ export default function SignUp() {
       </KakaoDiv>
       <div>
         <SignIn>
-          이미 회원이신가요? <LoginSpan>로그인</LoginSpan>
+          이미 회원이신가요?
+          <LoginSpan onClick={() => navigate("/login")}> 로그인</LoginSpan>
         </SignIn>
       </div>
     </Outer>
