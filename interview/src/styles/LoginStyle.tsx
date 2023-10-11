@@ -51,9 +51,7 @@ export const EmailP = styled.p`
   margin-bottom: 16px;
 `;
 
-export const EmailDiv = styled.div`
-  margin-bottom: 59px;
-`;
+export const EmailDiv = styled.div``;
 
 export const Input2 = styled.input`
   border: none;
