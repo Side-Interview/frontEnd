@@ -199,6 +199,7 @@ export default function SignUp() {
         <Label>이메일</Label>
         <InputAndImgDiv>
           <Input
+            value={email}
             $valid={emailIsValid}
             onChange={emailOnChangeHandler}
             placeholder="ex.gdhoing@gmail.com"
@@ -220,6 +221,7 @@ export default function SignUp() {
         <InputAndImgDiv>
           <form>
             <Input
+              value={password}
               $valid={passwordIsValid}
               onChange={passwordOnChangeHandler}
               type="password"
@@ -244,6 +246,7 @@ export default function SignUp() {
         <InputAndImgDiv>
           <form>
             <LastInput
+              value={passwordConfirm}
               type="password"
               autoComplete="on"
               $valid={passwordConfirmIsValid}

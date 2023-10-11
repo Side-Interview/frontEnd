@@ -9,6 +9,11 @@ import {
   KakaoImg,
   KakaoDiv,
   KakaoP,
+  Label,
+  InputAndImgDiv,
+  ErrorImg,
+  Input,
+  ErrorMsg,
 } from "../styles/SignUpStyle";
 
 import axios from "axios";
@@ -18,13 +23,13 @@ import {
   TitleDiv,
   EmailDiv,
   EmailP,
-  Input,
   PasswordDiv,
   Line2,
   FindAndSignDiv,
   FindAndSignP,
   FindAndSignP2,
   ModalDiv,
+  Input2,
 } from "../styles/LoginStyle";
 
 import { useNavigate } from "react-router-dom";
@@ -33,6 +38,8 @@ import { useState } from "react";
 export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [emailIsValid, setEmailIsValid] = useState(false);
+
   const [password, setPassword] = useState("");
   const [isModal, setIsModal] = useState(false);
 
@@ -48,12 +55,19 @@ export default function Login() {
       } else {
         setIsModal(true);
       }
+      setPassword("");
     } catch (error: unknown) {
       console.log(error);
     }
   };
 
   const emailOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const regex = /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/i;
+    if (regex.test(e.target.value)) {
+      setEmailIsValid(true);
+    } else {
+      setEmailIsValid(false);
+    }
     setEmail(e.target.value);
   };
 
@@ -63,6 +77,7 @@ export default function Login() {
 
   const formHandler = (e: any) => {
     e.preventDefault();
+    emailLoginHandler();
   };
 
   return (
@@ -74,17 +89,32 @@ export default function Login() {
         </SecondTitleP>
       </TitleDiv>
       <EmailDiv>
-        <EmailP>이메일</EmailP>
-        <Input
-          value={email}
-          onChange={emailOnChangeHandler}
-          placeholder="이메일을 입력해  주세요."
-        />
+        <Label>이메일</Label>
+        <InputAndImgDiv>
+          <Input
+            value={email}
+            $valid={emailIsValid}
+            onChange={emailOnChangeHandler}
+            placeholder="ex.gdhoing@gmail.com"
+          />
+          {emailIsValid ? (
+            <></>
+          ) : (
+            <>
+              <ErrorImg src="/images/no.svg" />
+              <ErrorMsg>
+                {email.length > 0
+                  ? "이메일 주소가 올바른지 확인해주세요."
+                  : "이메일을 입력해주세요"}
+              </ErrorMsg>
+            </>
+          )}
+        </InputAndImgDiv>
       </EmailDiv>
       <PasswordDiv>
         <EmailP>비밀번호</EmailP>
         <form onSubmit={formHandler}>
-          <Input
+          <Input2
             value={password}
             onChange={passwordOnChangeHandler}
             type="password"
@@ -106,7 +136,9 @@ export default function Login() {
         </Kakao>
       </KakaoDiv>
       <FindAndSignDiv>
-        <FindAndSignP>비밀번호 찾기 </FindAndSignP>
+        <FindAndSignP onClick={() => navigate("/password")}>
+          비밀번호 찾기
+        </FindAndSignP>
         <FindAndSignP2>|</FindAndSignP2>
         <FindAndSignP onClick={() => navigate("/signup")}>
           회원가입
