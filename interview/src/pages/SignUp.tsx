@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Outer,
@@ -102,14 +102,40 @@ export default function SignUp() {
   };
 
   const allOnClickHandler = () => {
-    if (!allRef.current) return;
+    if (
+      !allRef.current ||
+      !useCheckRef.current ||
+      !ageRef.current ||
+      !personRef.current
+    )
+      return;
     if (!allChecked) {
       allRef.current.src = "/images/checked.svg";
+      useCheckRef.current.src = "/images/checked.svg";
+      personRef.current.src = "/images/checked.svg";
+      ageRef.current.src = "/images/checked.svg";
     } else {
       allRef.current.src = "images/check.svg";
+      useCheckRef.current.src = "images/check.svg";
+      personRef.current.src = "images/check.svg";
+      ageRef.current.src = "images/check.svg";
     }
+    setUseChecked(!useChecked);
+    setAgeChecked(!ageChecked);
+    setPersonChecked(!personChecked);
     setAllChecked(!allChecked);
   };
+
+  useEffect(() => {
+    if (!allRef.current) return;
+    if (useChecked && ageChecked && personChecked) {
+      allRef.current.src = "images/checked.svg";
+      setAllChecked(true);
+    } else if (!useChecked || !ageChecked || !personChecked) {
+      allRef.current.src = "images/check.svg";
+      setAllChecked(false);
+    }
+  }, [useChecked, ageChecked, personChecked]);
 
   const useOnClickHandler = () => {
     if (!useCheckRef.current) return;
