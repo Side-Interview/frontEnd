@@ -1,0 +1,27 @@
+@font-face {
+  font-family: "Pretendard";
+  font-display: fallback;
+
+  src: url("./Pretendard-Regular.otf") format("opentype"),
+    url("./Pretendard-Regular.woff") format("woff"),
+    url("./Pretendard-Refular.ttf") format("truetype");
+
+  /* 사용할 폰트의 기본 스타일 */
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Black Han Sans";
+  src: url("./BlackHanSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url("./IBMPlexSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("./NotoSansKR-Black.ttf");
+}
