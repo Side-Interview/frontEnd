@@ -7,7 +7,7 @@ export const Outer = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding-top: 80px;
+  padding: 80px;
 `;
 
 export const TitleP = styled.p`

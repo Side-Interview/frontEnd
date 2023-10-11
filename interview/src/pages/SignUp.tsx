@@ -45,6 +45,18 @@ export default function SignUp() {
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [passwordConfirmIsValid, setPasswordConfirmIsValid] = useState(false);
 
+  const [allChecked, setAllChecked] = useState(false);
+  const allRef = useRef<HTMLImageElement>(null);
+
+  const [useChecked, setUseChecked] = useState(false);
+  const useCheckRef = useRef<HTMLImageElement>(null);
+
+  const [personChecked, setPersonChecked] = useState(false);
+  const personRef = useRef<HTMLImageElement>(null);
+
+  const [ageChecked, setAgeChecked] = useState(false);
+  const ageRef = useRef<HTMLImageElement>(null);
+
   const nickNameOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const regex = /^[^\p{P}\p{S}]{2,8}$/u;
     if (regex.test(e.target.value)) {
@@ -84,6 +96,46 @@ export default function SignUp() {
       setPasswordConfirmIsValid(true);
     }
     setPasswordConfirm(e.target.value);
+  };
+
+  const allOnClickHandler = () => {
+    if (!allRef.current) return;
+    if (!allChecked) {
+      allRef.current.src = "/images/checked.svg";
+    } else {
+      allRef.current.src = "images/check.svg";
+    }
+    setAllChecked(!allChecked);
+  };
+
+  const useOnClickHandler = () => {
+    if (!useCheckRef.current) return;
+    if (!useChecked) {
+      useCheckRef.current.src = "/images/checked.svg";
+    } else {
+      useCheckRef.current.src = "images/check.svg";
+    }
+    setUseChecked(!useChecked);
+  };
+
+  const personOnClickHandler = () => {
+    if (!personRef.current) return;
+    if (!personChecked) {
+      personRef.current.src = "/images/checked.svg";
+    } else {
+      personRef.current.src = "images/check.svg";
+    }
+    setPersonChecked(!personChecked);
+  };
+
+  const ageOnClickHandler = () => {
+    if (!ageRef.current) return;
+    if (!ageChecked) {
+      ageRef.current.src = "/images/checked.svg";
+    } else {
+      ageRef.current.src = "images/check.svg";
+    }
+    setAgeChecked(!ageChecked);
   };
 
   return (
@@ -186,22 +238,40 @@ export default function SignUp() {
         </InputAndImgDiv>
       </InputsDiv>
       <CheckBoxDiv>
-        <CheckBoxImg src="./images/check.svg" />
-        <All>전체 동의</All>
+        <CheckBoxImg
+          onClick={allOnClickHandler}
+          ref={allRef}
+          src="./images/check.svg"
+        />
+        <All onClick={allOnClickHandler}>전체 동의</All>
       </CheckBoxDiv>
       <CheckBoxDiv2>
-        <CheckBoxImg src="./images/check.svg" />
-        <Paper>(필수) 이용약관 동의</Paper>
+        <CheckBoxImg
+          ref={useCheckRef}
+          onClick={useOnClickHandler}
+          src="./images/check.svg"
+        />
+        <Paper onClick={useOnClickHandler}>(필수) 이용약관 동의</Paper>
         <Look>보기</Look>
       </CheckBoxDiv2>
       <CheckBoxDiv2>
-        <CheckBoxImg src="./images/check.svg" />
-        <Paper>(필수) 개인정보 수집 및 이용 동의</Paper>
+        <CheckBoxImg
+          ref={personRef}
+          src="./images/check.svg"
+          onClick={personOnClickHandler}
+        />
+        <Paper onClick={personOnClickHandler}>
+          (필수) 개인정보 수집 및 이용 동의
+        </Paper>
         <Look2>보기</Look2>
       </CheckBoxDiv2>
       <CheckBoxDiv2>
-        <CheckBoxImg src="./images/check.svg" />
-        <Paper>(필수) 14세 이상입니다</Paper>
+        <CheckBoxImg
+          ref={ageRef}
+          src="./images/check.svg"
+          onClick={ageOnClickHandler}
+        />
+        <Paper onClick={ageOnClickHandler}>(필수) 14세 이상입니다</Paper>
       </CheckBoxDiv2>
       <SignUpButton>
         <p>회원가입</p>
