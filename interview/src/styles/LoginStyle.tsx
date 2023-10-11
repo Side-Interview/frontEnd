@@ -78,3 +78,19 @@ export const Line2 = styled(Line)`
   margin-top: 22px;
   margin-bottom: 22px;
 `;
+
+export const ModalDiv = styled.div`
+  color: white;
+  background-color: #0f62fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  cursor: pointer;
+  width: 640px;
+  height: 64px;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  transform: translate(-50%, 65%);
+`;

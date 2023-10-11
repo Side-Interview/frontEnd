@@ -11,6 +11,8 @@ import {
   KakaoP,
 } from "../styles/SignUpStyle";
 
+import axios from "axios";
+import Modal from "../components/Modal";
 import {
   Outer,
   TitleDiv,
@@ -22,12 +24,47 @@ import {
   FindAndSignDiv,
   FindAndSignP,
   FindAndSignP2,
+  ModalDiv,
 } from "../styles/LoginStyle";
 
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isModal, setIsModal] = useState(false);
+
+  const emailLoginHandler = async () => {
+    try {
+      // @TODO : dummy 실제 백엔드 서버 주소로 연결하기
+      const response = await axios.get("/dummy/dummy.json");
+      if (
+        email === response.data.email &&
+        password === response.data.password
+      ) {
+        alert("성공");
+      } else {
+        setIsModal(true);
+      }
+    } catch (error: unknown) {
+      console.log(error);
+    }
+  };
+
+  const emailOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const passwordOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setPassword(e.target.value);
+  };
+
+  const formHandler = (e: any) => {
+    e.preventDefault();
+  };
+
   return (
     <Outer>
       <TitleDiv>
@@ -38,19 +75,25 @@ export default function Login() {
       </TitleDiv>
       <EmailDiv>
         <EmailP>이메일</EmailP>
-        <Input placeholder="이메일을 입력해  주세요." />
+        <Input
+          value={email}
+          onChange={emailOnChangeHandler}
+          placeholder="이메일을 입력해  주세요."
+        />
       </EmailDiv>
       <PasswordDiv>
         <EmailP>비밀번호</EmailP>
-        <form>
+        <form onSubmit={formHandler}>
           <Input
+            value={password}
+            onChange={passwordOnChangeHandler}
             type="password"
             autoComplete="on"
             placeholder="비밀번호를 입력해  주세요."
           />
         </form>
       </PasswordDiv>
-      <SignUpButton>이메일로 로그인</SignUpButton>
+      <SignUpButton onClick={emailLoginHandler}>이메일로 로그인</SignUpButton>
       <OrDiv>
         <Line2 src="./images/line.svg" />
         <OrSpan>또는</OrSpan>
@@ -69,6 +112,20 @@ export default function Login() {
           회원가입
         </FindAndSignP>
       </FindAndSignDiv>
+      {isModal && (
+        <>
+          <Modal
+            title={"로그인 오류"}
+            modal={isModal}
+            setModal={setIsModal}
+            width={640}
+            height={212}
+            content={"없는 아이디이거나 비밀번호가 올바르지 않습니다."}
+            content2={"다시 시도해주세요."}
+          />
+          <ModalDiv onClick={() => setIsModal(false)}>확인</ModalDiv>
+        </>
+      )}
     </Outer>
   );
 }
