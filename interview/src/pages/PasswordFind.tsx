@@ -10,7 +10,7 @@ import {
   ErrorMsg,
   Input,
 } from "../styles/SignUpStyle";
-import { EmailDiv } from "../styles/LoginStyle";
+import { EmailDiv, TitleDiv } from "../styles/LoginStyle";
 import styled from "styled-components";
 import { useState } from "react";
 
@@ -34,10 +34,12 @@ export default function PasswordFind() {
 
   return (
     <Outer>
-      <TitleP>세상의 모든 인터뷰 모집 & 참여는 이 곳에서!</TitleP>
-      <SecondTitleP2>
-        모두의 <SecondTitle>인:</SecondTitle>터뷰
-      </SecondTitleP2>
+      <TitleDiv>
+        <TitleP>세상의 모든 인터뷰 모집 & 참여는 이 곳에서!</TitleP>
+        <SecondTitleP2>
+          모두의 <SecondTitle>인:</SecondTitle>터뷰
+        </SecondTitleP2>
+      </TitleDiv>
       <EmailDiv>
         <Label>이메일</Label>
         <InputAndImgDiv>

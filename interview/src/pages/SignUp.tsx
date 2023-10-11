@@ -30,6 +30,7 @@ import {
   ErrorImg,
   ErrorMsg,
 } from "../styles/SignUpStyle";
+import { TitleDiv } from "../styles/LoginStyle";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -169,10 +170,12 @@ export default function SignUp() {
 
   return (
     <Outer>
-      <TitleP>세상의 모든 인터뷰 모집 & 참여는 이 곳에서!</TitleP>
-      <SecondTitleP>
-        모두의 <SecondTitle>인:</SecondTitle>터뷰
-      </SecondTitleP>
+      <TitleDiv>
+        <TitleP>세상의 모든 인터뷰 모집 & 참여는 이 곳에서!</TitleP>
+        <SecondTitleP>
+          모두의 <SecondTitle>인:</SecondTitle>터뷰
+        </SecondTitleP>
+      </TitleDiv>
       <InputsDiv>
         <Label>닉네임</Label>
         <InputAndImgDiv>
