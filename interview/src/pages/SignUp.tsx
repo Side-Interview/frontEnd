@@ -28,6 +28,9 @@ import {
   InputAndImgDiv,
   ErrorImg,
   ErrorMsg,
+  LongLine,
+  LineDiv,
+  CheckBoxDiv3,
 } from "../styles/SignUpStyle";
 import { TitleDiv } from "../styles/LoginStyle";
 
@@ -35,18 +38,20 @@ export default function SignUp() {
   const navigate = useNavigate();
 
   const [nickName, setNickName] = useState("");
-  const nickNameRef = useRef<HTMLInputElement>(null);
-
   const [nickNameIsValid, setNickNameIsValid] = useState(false);
+  const [nickNameFocus, setNickNameFocus] = useState(false);
 
   const [email, setEmail] = useState("");
   const [emailIsValid, setEmailIsValid] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
 
   const [password, setPassword] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState(false);
+  const [passwordFocus, setPasswordFocus] = useState(false);
 
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [passwordConfirmIsValid, setPasswordConfirmIsValid] = useState(false);
+  const [passwordConfirmFocus, setPasswordConfirmFocus] = useState(false);
 
   const [allChecked, setAllChecked] = useState(false);
   const allRef = useRef<HTMLImageElement>(null);
@@ -179,23 +184,26 @@ export default function SignUp() {
         <Label>닉네임</Label>
         <InputAndImgDiv>
           <Input
-            ref={nickNameRef}
             $valid={nickNameIsValid}
             value={nickName}
             onChange={nickNameOnChangeHandler}
             placeholder="2-8자 이내, 특수문자 제외 조합"
+            onFocus={() => setNickNameFocus(true)}
+            onBlur={() => setNickNameFocus(false)}
           />
           {nickNameIsValid ? (
             <></>
           ) : (
-            <>
-              <ErrorImg src="/images/no.svg" />
-              <ErrorMsg>
-                {nickName.length > 0
-                  ? "2-8자 이내, 특수문자 제외하고 입력해주세요."
-                  : "닉네임을 입력해주세요"}
-              </ErrorMsg>
-            </>
+            nickNameFocus && (
+              <>
+                <ErrorImg src="/images/no.svg" />
+                <ErrorMsg>
+                  {nickName.length > 0
+                    ? "2-8자 이내, 특수문자 제외하고 입력해주세요."
+                    : "닉네임을 입력해주세요"}
+                </ErrorMsg>
+              </>
+            )
           )}
         </InputAndImgDiv>
         <Label>이메일</Label>
@@ -205,18 +213,22 @@ export default function SignUp() {
             $valid={emailIsValid}
             onChange={emailOnChangeHandler}
             placeholder="ex.gdhoing@gmail.com"
+            onFocus={() => setEmailFocus(true)}
+            onBlur={() => setEmailFocus(false)}
           />
           {emailIsValid ? (
             <></>
           ) : (
-            <>
-              <ErrorImg src="/images/no.svg" />
-              <ErrorMsg>
-                {email.length > 0
-                  ? "이메일 주소가 올바른지 확인해주세요."
-                  : "이메일을 입력해주세요"}
-              </ErrorMsg>
-            </>
+            emailFocus && (
+              <>
+                <ErrorImg src="/images/no.svg" />
+                <ErrorMsg>
+                  {email.length > 0
+                    ? "이메일 주소가 올바른지 확인해주세요."
+                    : "이메일을 입력해주세요"}
+                </ErrorMsg>
+              </>
+            )
           )}
         </InputAndImgDiv>
         <Label>비밀번호</Label>
@@ -229,19 +241,23 @@ export default function SignUp() {
               type="password"
               autoComplete="on"
               placeholder="영문 대소문자+숫자+특수문자 조합 8자리"
+              onFocus={() => setPasswordFocus(true)}
+              onBlur={() => setPasswordFocus(false)}
             />
           </form>
           {passwordIsValid ? (
             <></>
           ) : (
-            <>
-              <ErrorImg src="/images/no.svg" />
-              <ErrorMsg>
-                {password.length > 0
-                  ? "영문 대소문자+숫자+특수문자 조합 8자리를 입력하세요."
-                  : "비밀번호를 입력해주세요"}
-              </ErrorMsg>
-            </>
+            passwordFocus && (
+              <>
+                <ErrorImg src="/images/no.svg" />
+                <ErrorMsg>
+                  {password.length > 0
+                    ? "영문 대소문자+숫자+특수문자 조합 8자리를 입력하세요."
+                    : "비밀번호를 입력해주세요"}
+                </ErrorMsg>
+              </>
+            )
           )}
         </InputAndImgDiv>
         <Label>비밀번호 확인</Label>
@@ -254,20 +270,24 @@ export default function SignUp() {
               $valid={passwordConfirmIsValid}
               onChange={passwordConfirmOnChangeHandler}
               placeholder="영문 대소문자+숫자+특수문자 조합 8자리"
+              onFocus={() => setPasswordConfirmFocus(true)}
+              onBlur={() => setPasswordConfirmFocus(false)}
             />
           </form>
 
           {passwordConfirmIsValid ? (
             <></>
           ) : (
-            <>
-              <ErrorImg src="/images/no.svg" />
-              <ErrorMsg>
-                {passwordConfirm.length > 0
-                  ? "비밀번호가 일치하지 않습니다."
-                  : "비밀번호를 입력해주세요"}
-              </ErrorMsg>
-            </>
+            passwordConfirmFocus && (
+              <>
+                <ErrorImg src="/images/no.svg" />
+                <ErrorMsg>
+                  {passwordConfirm.length > 0
+                    ? "비밀번호가 일치하지 않습니다."
+                    : "비밀번호를 입력해주세요"}
+                </ErrorMsg>
+              </>
+            )
           )}
         </InputAndImgDiv>
       </InputsDiv>
@@ -277,8 +297,13 @@ export default function SignUp() {
           ref={allRef}
           src="./images/check.svg"
         />
-        <All onClick={allOnClickHandler}>전체 동의</All>
+        <LineDiv>
+          <All onClick={allOnClickHandler}>전체 동의</All>
+        </LineDiv>
       </CheckBoxDiv>
+      <div>
+        <LongLine />
+      </div>
       <CheckBoxDiv2>
         <CheckBoxImg
           ref={useCheckRef}
@@ -299,14 +324,14 @@ export default function SignUp() {
         </Paper>
         <Look2>보기</Look2>
       </CheckBoxDiv2>
-      <CheckBoxDiv2>
+      <CheckBoxDiv3>
         <CheckBoxImg
           ref={ageRef}
           src="./images/check.svg"
           onClick={ageOnClickHandler}
         />
         <Paper onClick={ageOnClickHandler}>(필수) 14세 이상입니다</Paper>
-      </CheckBoxDiv2>
+      </CheckBoxDiv3>
       <SignUpButton>
         <p>회원가입</p>
       </SignUpButton>
@@ -318,7 +343,7 @@ export default function SignUp() {
       <KakaoDiv>
         <KakaoImg src="./images/kakao.png" />
         <Kakao>
-          <KakaoP>카카오 계정으로 로그인</KakaoP>
+          <KakaoP>카카오로 시작</KakaoP>
         </Kakao>
       </KakaoDiv>
       <div>

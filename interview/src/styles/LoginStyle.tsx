@@ -9,7 +9,7 @@ export const Outer = styled.div`
 `;
 
 export const TitleDiv = styled.div`
-  margin-bottom: 80px;
+  margin-bottom: 70px;
 `;
 
 export const FindAndSignP = styled.p`

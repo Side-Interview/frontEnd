@@ -38,6 +38,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [emailIsValid, setEmailIsValid] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
 
   const [password, setPassword] = useState("");
   const [isModal, setIsModal] = useState(false);
@@ -91,6 +92,8 @@ export default function Login() {
         <Label>이메일</Label>
         <InputAndImgDiv>
           <Input
+            onFocus={() => setEmailFocus(true)}
+            onBlur={() => setEmailFocus(false)}
             value={email}
             $valid={emailIsValid}
             onChange={emailOnChangeHandler}
@@ -99,14 +102,16 @@ export default function Login() {
           {emailIsValid ? (
             <></>
           ) : (
-            <>
-              <ErrorImg src="/images/no.svg" />
-              <ErrorMsg>
-                {email.length > 0
-                  ? "이메일 주소가 올바른지 확인해주세요."
-                  : "이메일을 입력해주세요"}
-              </ErrorMsg>
-            </>
+            emailFocus && (
+              <>
+                <ErrorImg src="/images/no.svg" />
+                <ErrorMsg>
+                  {email.length > 0
+                    ? "이메일 주소가 올바른지 확인해주세요."
+                    : "이메일을 입력해주세요"}
+                </ErrorMsg>
+              </>
+            )
           )}
         </InputAndImgDiv>
       </EmailDiv>
