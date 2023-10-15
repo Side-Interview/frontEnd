@@ -1,5 +1,4 @@
 import {
-  TitleP,
   SecondTitle,
   SecondTitleP,
   SignUpButton,
@@ -83,9 +82,9 @@ export default function Login() {
   return (
     <Outer>
       <TitleDiv>
-        <TitleP>세상의 모든 인터뷰 모집 & 참여는 이 곳에서!</TitleP>
         <SecondTitleP>
-          모두의 <SecondTitle>인:</SecondTitle>터뷰
+          <img src="/images/logo.svg" alt="logo" />
+          <SecondTitle>SurveyGather</SecondTitle>
         </SecondTitleP>
       </TitleDiv>
       <EmailDiv>
@@ -123,7 +122,7 @@ export default function Login() {
           />
         </form>
       </PasswordDiv>
-      <SignUpButton onClick={emailLoginHandler}>이메일로 로그인</SignUpButton>
+      <SignUpButton onClick={emailLoginHandler}>이메일 로그인</SignUpButton>
       <OrDiv>
         <Line2 src="./images/line.svg" />
         <OrSpan>또는</OrSpan>
@@ -132,7 +131,7 @@ export default function Login() {
       <KakaoDiv>
         <KakaoImg src="./images/kakao.png" />
         <Kakao>
-          <KakaoP>카카오 계정으로 로그인</KakaoP>
+          <KakaoP>카카오로 시작</KakaoP>
         </Kakao>
       </KakaoDiv>
       <FindAndSignDiv>
