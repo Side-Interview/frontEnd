@@ -1,5 +1,4 @@
 import {
-  TitleP,
   SecondTitle,
   SecondTitleP,
   SignUpButton,
@@ -39,6 +38,7 @@ export default function Login() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [emailIsValid, setEmailIsValid] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
 
   const [password, setPassword] = useState("");
   const [isModal, setIsModal] = useState(false);
@@ -83,15 +83,17 @@ export default function Login() {
   return (
     <Outer>
       <TitleDiv>
-        <TitleP>세상의 모든 인터뷰 모집 & 참여는 이 곳에서!</TitleP>
         <SecondTitleP>
-          모두의 <SecondTitle>인:</SecondTitle>터뷰
+          <img src="/images/logo.svg" alt="logo" />
+          <SecondTitle>SurveyGather</SecondTitle>
         </SecondTitleP>
       </TitleDiv>
       <EmailDiv>
         <Label>이메일</Label>
         <InputAndImgDiv>
           <Input
+            onFocus={() => setEmailFocus(true)}
+            onBlur={() => setEmailFocus(false)}
             value={email}
             $valid={emailIsValid}
             onChange={emailOnChangeHandler}
@@ -100,14 +102,16 @@ export default function Login() {
           {emailIsValid ? (
             <></>
           ) : (
-            <>
-              <ErrorImg src="/images/no.svg" />
-              <ErrorMsg>
-                {email.length > 0
-                  ? "이메일 주소가 올바른지 확인해주세요."
-                  : "이메일을 입력해주세요"}
-              </ErrorMsg>
-            </>
+            emailFocus && (
+              <>
+                <ErrorImg src="/images/no.svg" />
+                <ErrorMsg>
+                  {email.length > 0
+                    ? "이메일 주소가 올바른지 확인해주세요."
+                    : "이메일을 입력해주세요"}
+                </ErrorMsg>
+              </>
+            )
           )}
         </InputAndImgDiv>
       </EmailDiv>
@@ -123,7 +127,7 @@ export default function Login() {
           />
         </form>
       </PasswordDiv>
-      <SignUpButton onClick={emailLoginHandler}>이메일로 로그인</SignUpButton>
+      <SignUpButton onClick={emailLoginHandler}>이메일 로그인</SignUpButton>
       <OrDiv>
         <Line2 src="./images/line.svg" />
         <OrSpan>또는</OrSpan>
@@ -132,7 +136,7 @@ export default function Login() {
       <KakaoDiv>
         <KakaoImg src="./images/kakao.png" />
         <Kakao>
-          <KakaoP>카카오 계정으로 로그인</KakaoP>
+          <KakaoP>카카오로 시작</KakaoP>
         </Kakao>
       </KakaoDiv>
       <FindAndSignDiv>

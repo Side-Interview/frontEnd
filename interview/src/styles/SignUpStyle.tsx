@@ -7,7 +7,7 @@ export const Outer = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 80px;
+  padding: 50px 50px 80px 50px;
 `;
 
 export const TitleP = styled.p`
@@ -20,16 +20,18 @@ export const TitleP = styled.p`
 `;
 
 export const SecondTitle = styled.span`
+  /** @TODO : pretendard semibold로 들어가야함 */
   color: var(--brand, #0255ff);
-  font-family: "Black Han Sans";
-  font-size: 32px;
+  margin-left: 8px;
+  font-family: "Pretendard";
+  font-size: 45.774px;
   font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  font-weight: 600;
+  line-height: 140%; /* 64.084px */
+  letter-spacing: -0.458px;
 `;
 
 export const SecondTitleP = styled.p`
-  margin-top: 10px;
   color: #1e1e1e;
   font-family: "Black Han Sans";
   font-size: 32px;
@@ -39,8 +41,7 @@ export const SecondTitleP = styled.p`
 `;
 
 export const InputsDiv = styled.div`
-  margin-top: 21px;
-  padding: 41px 36px 41px 36px;
+  padding: 0px 36px 41px 36px;
 `;
 
 export const Label = styled.p`
@@ -55,24 +56,35 @@ export const Label = styled.p`
 `;
 
 export const Input = styled.input<{ $valid: boolean }>`
-  border: ${(props) => (props.$valid ? "none" : "2px solid #f82525")};
-  border-radius: 12px;
-  background: #f7f7f7;
+  /* border: ${(props) => (props.$valid ? "none" : "2px solid #f82525")}; */
+  border: none;
+  background-color: #f7f7f7;
   width: 338px;
   height: 48px;
   padding: 15px;
   margin-bottom: 4px;
+  color: #b4b4b4;
   font-family: "IBM Plex Sans";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  &::placeholder {
+    color: #b4b4b4;
+    font-family: "IBM Plex Sans";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
   &:focus {
     outline: none;
-    border: ${(props) =>
-      props.$valid ? "2px solid gray" : "2px solid #f82525"};
+    border-radius: 12px;
+    border: ${(props) => (props.$valid ? "none" : "2px solid #f82525")};
   }
 `;
 
-export const LastInput = styled(Input)`
-  margin-bottom: 4px;
-`;
+export const LastInput = styled(Input)``;
 
 export const All = styled.p`
   color: #323232;
@@ -90,11 +102,14 @@ export const CheckBoxDiv = styled.div`
   width: 338px;
   justify-content: start;
   align-items: center;
-  margin-bottom: 33px;
 `;
 
 export const CheckBoxDiv2 = styled(CheckBoxDiv)`
   margin-bottom: 16px;
+`;
+
+export const CheckBoxDiv3 = styled(CheckBoxDiv)`
+  margin-bottom: 0px;
 `;
 
 export const CheckBoxImg = styled.img`
@@ -107,7 +122,7 @@ export const Paper = styled.p`
   cursor: pointer;
   margin-left: 8px;
   color: #737373;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-size: 14px;
   font-style: normal;
   font-weight: 350;
@@ -117,7 +132,7 @@ export const Paper = styled.p`
 export const Look = styled.p`
   color: #b5b5b5;
   text-align: center;
-  font-family: Noto Sans KR;
+  font-family: "Noto Sans KR";
   font-size: 14px;
   font-style: normal;
   font-weight: 350;
@@ -132,6 +147,7 @@ export const Look2 = styled(Look)`
 `;
 
 export const SignUpButton = styled.div`
+  margin-top: 37px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -147,7 +163,6 @@ export const SignUpButton = styled.div`
   line-height: 18px;
   letter-spacing: 0.16px;
   cursor: pointer;
-  margin-top: 30px;
 `;
 
 export const Kakao = styled.div`
@@ -191,13 +206,20 @@ export const OrDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 8px;
+  margin-bottom: 8px;
 `;
 
 export const OrSpan = styled.span`
   margin-left: 20px;
   margin-right: 20px;
+  color: var(--gray3, #b4b4b4);
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 200% */
 `;
 
 export const SignIn = styled.p`
@@ -207,13 +229,13 @@ export const SignIn = styled.p`
   font-style: normal;
   font-weight: 600;
   line-height: 18px;
-  margin-top: 5px;
+  margin-top: 8px;
 `;
 
 export const LoginSpan = styled.span`
   text-decoration-line: underline;
   color: var(--gray3, #b4b4b4);
-  font-family: IBM Plex Sans;
+  font-family: "IBM Plex Sans";
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -245,11 +267,25 @@ export const ErrorImg = styled.img`
 export const ErrorMsg = styled.p`
   color: var(--error, #f82525);
   /* Utility styles/label-01 */
-  font-family: IBM Plex Sans;
+  font-family: "IBM Plex Sans";
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 16px; /* 133.333% */
   letter-spacing: 0.32px;
   margin-bottom: 24px;
+`;
+
+export const LongLine = styled.div`
+  background-color: #dcdcdc;
+  margin-top: 16px;
+  width: 335px;
+  margin-bottom: 16px;
+  height: 1px;
+`;
+
+export const LineDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
