@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Outer,
-  TitleP,
   SecondTitleP,
   SecondTitle,
   InputsDiv,
@@ -171,9 +170,9 @@ export default function SignUp() {
   return (
     <Outer>
       <TitleDiv>
-        <TitleP>세상의 모든 인터뷰 모집 & 참여는 이 곳에서!</TitleP>
         <SecondTitleP>
-          모두의 <SecondTitle>인:</SecondTitle>터뷰
+          <img src="/images/logo.svg" alt="logo" />
+          <SecondTitle>SurveyGather</SecondTitle>
         </SecondTitleP>
       </TitleDiv>
       <InputsDiv>
@@ -325,7 +324,7 @@ export default function SignUp() {
       <div>
         <SignIn>
           이미 회원이신가요?
-          <LoginSpan onClick={() => navigate("/login")}> 로그인</LoginSpan>
+          <LoginSpan onClick={() => navigate("/login")}>로그인</LoginSpan>
         </SignIn>
       </div>
     </Outer>

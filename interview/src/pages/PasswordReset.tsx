@@ -1,7 +1,6 @@
 import {
   SignUpButton,
   Outer,
-  TitleP,
   SecondTitleP,
   SecondTitle,
   Label,
@@ -47,9 +46,9 @@ export default function PasswordReset() {
   return (
     <Outer>
       <TitleDiv>
-        <TitleP>세상의 모든 인터뷰 모집 & 참여는 이 곳에서!</TitleP>
         <SecondTitleP2>
-          모두의 <SecondTitle>인:</SecondTitle>터뷰
+          <img src="/images/logo.svg" alt="logo" />
+          <SecondTitle>SurveyGather</SecondTitle>
         </SecondTitleP2>
       </TitleDiv>
       <EmailDiv>

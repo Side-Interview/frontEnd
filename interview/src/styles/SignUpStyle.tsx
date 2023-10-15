@@ -20,12 +20,15 @@ export const TitleP = styled.p`
 `;
 
 export const SecondTitle = styled.span`
+  /** @TODO : pretendard semibold로 들어가야함 */
   color: var(--brand, #0255ff);
-  font-family: "Black Han Sans";
-  font-size: 32px;
+  margin-left: 8px;
+  font-family: "Pretendard";
+  font-size: 45.774px;
   font-style: normal;
-  font-weight: 400;
-  line-height: normal;
+  font-weight: 600;
+  line-height: 140%; /* 64.084px */
+  letter-spacing: -0.458px;
 `;
 
 export const SecondTitleP = styled.p`
