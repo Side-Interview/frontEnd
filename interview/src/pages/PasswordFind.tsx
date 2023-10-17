@@ -54,14 +54,16 @@ export default function PasswordFind() {
           {emailIsValid ? (
             <></>
           ) : (
-            <>
-              <ErrorImg src="/images/no.svg" />
-              <ErrorMsg>
-                {email.length > 0
-                  ? "이메일 주소가 올바른지 확인해주세요."
-                  : "이메일을 입력해주세요"}
-              </ErrorMsg>
-            </>
+            emailFocus && (
+              <>
+                <ErrorImg src="/images/no.svg" />
+                <ErrorMsg>
+                  {email.length > 0
+                    ? "이메일 주소가 올바른지 확인해주세요."
+                    : "이메일을 입력해주세요"}
+                </ErrorMsg>
+              </>
+            )
           )}
         </InputAndImgDiv>
       </EmailDiv>

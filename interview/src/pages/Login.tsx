@@ -41,6 +41,7 @@ export default function Login() {
   const [emailFocus, setEmailFocus] = useState(false);
 
   const [password, setPassword] = useState("");
+  const [passwordFocus, setPasswordFocus] = useState(false);
   const [isModal, setIsModal] = useState(false);
 
   const emailLoginHandler = async () => {
@@ -119,12 +120,25 @@ export default function Login() {
         <EmailP>비밀번호</EmailP>
         <form onSubmit={formHandler}>
           <Input2
+            $focus={passwordFocus}
+            $valid={password.length > 0}
             value={password}
             onChange={passwordOnChangeHandler}
+            onFocus={() => setPasswordFocus(true)}
             type="password"
             autoComplete="on"
             placeholder="비밀번호를 입력해  주세요."
           />
+          {password.length > 0 ? (
+            <></>
+          ) : (
+            passwordFocus && (
+              <>
+                <ErrorImg src="/images/no.svg" />
+                <ErrorMsg>{"비밀번호를 입력해주세요"}</ErrorMsg>
+              </>
+            )
+          )}
         </form>
       </PasswordDiv>
       <SignUpButton onClick={emailLoginHandler}>이메일 로그인</SignUpButton>
