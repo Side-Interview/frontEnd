@@ -67,14 +67,16 @@ export default function PasswordReset() {
           {passwordIsValid ? (
             <></>
           ) : (
-            <>
-              <ErrorImg src="/images/no.svg" />
-              <ErrorMsg>
-                {password.length > 0
-                  ? "영문 대소문자+숫자+특수문자 조합 8자리를 입력하세요."
-                  : "비밀번호를 입력해주세요"}
-              </ErrorMsg>
-            </>
+            passwordFocus && (
+              <>
+                <ErrorImg src="/images/no.svg" />
+                <ErrorMsg>
+                  {password.length > 0
+                    ? "영문 대소문자+숫자+특수문자 조합 8자리를 입력하세요."
+                    : "비밀번호를 입력해주세요"}
+                </ErrorMsg>
+              </>
+            )
           )}
         </InputAndImgDiv>
       </EmailDiv>
@@ -92,14 +94,16 @@ export default function PasswordReset() {
           {passwordConfirmIsValid ? (
             <></>
           ) : (
-            <>
-              <ErrorImg src="/images/no.svg" />
-              <ErrorMsg>
-                {passwordConfirm.length > 0
-                  ? "영문 대소문자+숫자+특수문자 조합 8자리를 입력하세요."
-                  : "비밀번호를 입력해주세요"}
-              </ErrorMsg>
-            </>
+            passwordConfirmFocus && (
+              <>
+                <ErrorImg src="/images/no.svg" />
+                <ErrorMsg>
+                  {passwordConfirm.length > 0
+                    ? "영문 대소문자+숫자+특수문자 조합 8자리를 입력하세요."
+                    : "비밀번호를 입력해주세요"}
+                </ErrorMsg>
+              </>
+            )
           )}
         </InputAndImgDiv>
       </EmailDiv>

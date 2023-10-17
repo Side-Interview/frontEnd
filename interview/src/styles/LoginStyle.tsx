@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Line } from "./SignUpStyle";
+import { Line, Input } from "./SignUpStyle";
 
 export const Outer = styled.div`
   display: flex;
@@ -53,8 +53,7 @@ export const EmailP = styled.p`
 
 export const EmailDiv = styled.div``;
 
-export const Input2 = styled.input`
-  border: none;
+export const Input2 = styled(Input)`
   width: 342px;
   height: 48px;
   padding: 15px;
