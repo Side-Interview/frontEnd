@@ -66,6 +66,9 @@ export const Input2 = styled.input`
   font-weight: 400;
   line-height: 18px; /* 128.571% */
   letter-spacing: 0.16px;
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const PasswordDiv = styled.div`
