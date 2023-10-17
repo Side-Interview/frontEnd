@@ -184,12 +184,15 @@ export default function SignUp() {
         <Label>닉네임</Label>
         <InputAndImgDiv>
           <Input
+            $focus={nickNameFocus}
             $valid={nickNameIsValid}
             value={nickName}
             onChange={nickNameOnChangeHandler}
             placeholder="2-8자 이내, 특수문자 제외 조합"
-            onFocus={() => setNickNameFocus(true)}
-            onBlur={() => setNickNameFocus(false)}
+            onFocus={() => {
+              setNickNameFocus(true);
+            }}
+            // onBlur={() => setNickNameFocus(false)}
           />
           {nickNameIsValid ? (
             <></>
@@ -209,12 +212,12 @@ export default function SignUp() {
         <Label>이메일</Label>
         <InputAndImgDiv>
           <Input
+            $focus={emailFocus}
             value={email}
             $valid={emailIsValid}
             onChange={emailOnChangeHandler}
             placeholder="ex.gdhoing@gmail.com"
             onFocus={() => setEmailFocus(true)}
-            onBlur={() => setEmailFocus(false)}
           />
           {emailIsValid ? (
             <></>
@@ -235,6 +238,7 @@ export default function SignUp() {
         <InputAndImgDiv>
           <form>
             <Input
+              $focus={passwordFocus}
               value={password}
               $valid={passwordIsValid}
               onChange={passwordOnChangeHandler}
@@ -242,7 +246,6 @@ export default function SignUp() {
               autoComplete="on"
               placeholder="영문 대소문자+숫자+특수문자 조합 8자리"
               onFocus={() => setPasswordFocus(true)}
-              onBlur={() => setPasswordFocus(false)}
             />
           </form>
           {passwordIsValid ? (
@@ -264,6 +267,7 @@ export default function SignUp() {
         <InputAndImgDiv>
           <form>
             <LastInput
+              $focus={passwordConfirmFocus}
               value={passwordConfirm}
               type="password"
               autoComplete="on"
@@ -271,7 +275,6 @@ export default function SignUp() {
               onChange={passwordConfirmOnChangeHandler}
               placeholder="영문 대소문자+숫자+특수문자 조합 8자리"
               onFocus={() => setPasswordConfirmFocus(true)}
-              onBlur={() => setPasswordConfirmFocus(false)}
             />
           </form>
 

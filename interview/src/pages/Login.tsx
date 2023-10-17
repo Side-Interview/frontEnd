@@ -92,8 +92,8 @@ export default function Login() {
         <Label>이메일</Label>
         <InputAndImgDiv>
           <Input
+            $focus={emailFocus}
             onFocus={() => setEmailFocus(true)}
-            onBlur={() => setEmailFocus(false)}
             value={email}
             $valid={emailIsValid}
             onChange={emailOnChangeHandler}
