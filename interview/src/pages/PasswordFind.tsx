@@ -20,6 +20,7 @@ export const SecondTitleP2 = styled(SecondTitleP)`
 export default function PasswordFind() {
   const [email, setEmail] = useState("");
   const [emailIsValid, setEmailIsValid] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
 
   const emailOnChangeHandler = (e: any) => {
     const regex = /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/i;
@@ -43,6 +44,8 @@ export default function PasswordFind() {
         <Label>이메일</Label>
         <InputAndImgDiv>
           <Input
+            $focus={emailFocus}
+            onFocus={() => setEmailFocus(true)}
             value={email}
             $valid={emailIsValid}
             onChange={emailOnChangeHandler}

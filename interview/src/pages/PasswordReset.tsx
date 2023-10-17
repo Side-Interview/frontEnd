@@ -20,9 +20,11 @@ export const SecondTitleP2 = styled(SecondTitleP)`
 export default function PasswordReset() {
   const [password, setPassword] = useState("");
   const [passwordIsValid, setPasswordIsValid] = useState(false);
+  const [passwordFocus, setPasswordFocus] = useState(false);
 
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [passwordConfirmIsValid, setPasswordConfirmIsValid] = useState(false);
+  const [passwordConfirmFocus, setPasswordConfirmFocus] = useState(false);
 
   const passwordOnChangeHandler = (e: any) => {
     const regex = /^[\w.%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/i;
@@ -55,6 +57,8 @@ export default function PasswordReset() {
         <Label>비밀번호</Label>
         <InputAndImgDiv>
           <Input
+            $focus={passwordFocus}
+            onFocus={() => setPasswordFocus(true)}
             value={password}
             $valid={passwordIsValid}
             onChange={passwordOnChangeHandler}
@@ -78,6 +82,8 @@ export default function PasswordReset() {
         <Label>비밀번호</Label>
         <InputAndImgDiv>
           <Input
+            $focus={passwordConfirmFocus}
+            onFocus={() => setPasswordConfirmFocus(true)}
             value={passwordConfirm}
             $valid={passwordConfirmIsValid}
             onChange={passwordConfirmOnChangeHandler}
