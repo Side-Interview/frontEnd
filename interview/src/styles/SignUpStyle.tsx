@@ -55,7 +55,7 @@ export const Label = styled.p`
   margin-bottom: 8px;
 `;
 
-export const Input = styled.input<{ $valid: boolean }>`
+export const Input = styled.input<{ $valid: boolean; $focus: boolean }>`
   /* border: ${(props) => (props.$valid ? "none" : "2px solid #f82525")}; */
   border: none;
   background-color: #f7f7f7;
@@ -69,6 +69,7 @@ export const Input = styled.input<{ $valid: boolean }>`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+
   &::placeholder {
     color: #b4b4b4;
     font-family: "IBM Plex Sans";
@@ -77,6 +78,12 @@ export const Input = styled.input<{ $valid: boolean }>`
     font-weight: 400;
     line-height: normal;
   }
+
+  border: ${(props) =>
+    props.$focus && !props.$valid ? "2px solid #f82525" : "none"};
+
+  border-radius: ${(props) => (props.$focus && !props.$valid ? "12px" : "0px")};
+
   &:focus {
     outline: none;
     border-radius: 12px;
